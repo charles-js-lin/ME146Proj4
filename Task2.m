@@ -1,0 +1,21 @@
+rau = 1.18
+v1 = 12
+alpha = 8
+CL = 1.27
+n = 3
+K_h = 2.7
+const = 0.4
+r_h = 2
+R = 35
+w = 2
+lamda = w*R/v1
+r_head = r_h/R
+x = const/(1-r_head)
+power1 = (1/3)*n*rau*v1^3*CL*lamda^2*K_h*R
+a = (((1/3)+(const/(1-r_head))*((r_head/3)-1/4))*(1+(4/(9*lamda^2)))^1.5)-(((1/3)+(const/(1-r_head))*((r_head/12)))*(r_head+(4/(9*lamda^2)))^1.5)
+b = x*1/(18*lamda^2)*((sqrt(1+(4/(9*lamda^2)))-(r_head*sqrt(r_head^2+(4/(9*lamda^2))))))
+c = x*2/(81*lamda^4)*log((1+sqrt(1+(4/(9*lamda^2))))/(r_head+sqrt(r_head^2+(4/(9*lamda^2)))))
+ans = power1*(a-b-c)
+Wbetz = 8*pi/27*rau*v1^3*R^2*(1-r_head^2);
+
+eff = (9*n*CL*lamda^2*K_h)*(a-b-c)/(8*pi*R*(1-r_head^2))
